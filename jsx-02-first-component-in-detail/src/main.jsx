@@ -1,28 +1,15 @@
 import React from "react";
 import ReactDom from "react-dom";
 
-// * JSX Rules
-// return single element
-// div / section / article or Fragment
-// use camelCase for html attribute
-// className instead of class
-// close every elemento
-// formatting
+// stateless functional component
+// Alway return JSX
 
 function Greeting() {
   return (
-    <section>
-      <article>
-        <h1>Hello World</h1>
-        <h3>Hello People</h3>
-        <ul>
-          <li>
-            <a href="#">Hello World</a>
-          </li>
-        </ul>
-      </article>
-      <div></div>
-    </section>
+    <>
+      <h1>Hello World</h1>
+      <h3>This is Main in file JSX</h3>
+    </>
   );
 }
 
