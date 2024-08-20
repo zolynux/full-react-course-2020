@@ -1816,10 +1816,10 @@ En JSX, puedes incluir expresiones de JavaScript dentro de llaves `{}`. Estas ex
 #### **Ejemplo básico**:
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function Greeting() {
-  const name = 'Juan';
+  const name = "Juan";
   return <h1>Hola, {name}!</h1>;
 }
 
@@ -1837,12 +1837,16 @@ Aunque JSX no soporta directamente las estructuras de control como `if` o `for`,
 El operador ternario es útil para renderizar contenido condicionalmente.
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function UserGreeting({ isLoggedIn }) {
   return (
     <div>
-      {isLoggedIn ? <h1>Bienvenido de nuevo!</h1> : <h1>Por favor, inicia sesión.</h1>}
+      {isLoggedIn ? (
+        <h1>Bienvenido de nuevo!</h1>
+      ) : (
+        <h1>Por favor, inicia sesión.</h1>
+      )}
     </div>
   );
 }
@@ -1857,14 +1861,10 @@ export default UserGreeting;
 Puedes usar el operador lógico `&&` para renderizar un elemento solo si una condición es verdadera.
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function Notification({ hasUnreadMessages }) {
-  return (
-    <div>
-      {hasUnreadMessages && <p>Tienes mensajes sin leer.</p>}
-    </div>
-  );
+  return <div>{hasUnreadMessages && <p>Tienes mensajes sin leer.</p>}</div>;
 }
 
 export default Notification;
@@ -1879,7 +1879,7 @@ Aunque no puedes usar `for` directamente en JSX, puedes utilizar métodos de arr
 #### **Ejemplo con `map()`**:
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function ItemList({ items }) {
   return (
@@ -1903,7 +1903,7 @@ Puedes llamar a funciones dentro de JSX para realizar cálculos o manejar lógic
 #### **Ejemplo**:
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function formatDate(date) {
   return date.toLocaleDateString();
@@ -1925,11 +1925,11 @@ Puedes usar eventos de JavaScript (como `onClick`, `onChange`, etc.) en JSX para
 #### **Ejemplo de `onClick`**:
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function Button() {
   const handleClick = () => {
-    alert('¡Botón clickeado!');
+    alert("¡Botón clickeado!");
   };
 
   return <button onClick={handleClick}>Haz clic aquí</button>;
@@ -1947,7 +1947,7 @@ Puedes utilizar props y el estado dentro de JSX para renderizar dinámicamente c
 #### **Ejemplo con Props**:
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function Welcome({ user }) {
   return <h1>Hola, {user.name}!</h1>;
@@ -1961,7 +1961,7 @@ export default Welcome;
 #### **Ejemplo con Estado**:
 
 ```jsx
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function Counter() {
   const [count, setCount] = useState(0);
@@ -1986,14 +1986,14 @@ Puedes combinar diferentes técnicas de renderizado condicional para crear UIs m
 #### **Ejemplo**:
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function StatusMessage({ status }) {
   return (
     <div>
-      {status === 'loading' && <p>Cargando...</p>}
-      {status === 'error' && <p>Error al cargar datos.</p>}
-      {status === 'success' && <p>Datos cargados exitosamente.</p>}
+      {status === "loading" && <p>Cargando...</p>}
+      {status === "error" && <p>Error al cargar datos.</p>}
+      {status === "success" && <p>Datos cargados exitosamente.</p>}
     </div>
   );
 }
@@ -2009,7 +2009,7 @@ JSX es extremadamente flexible y permite integrar JavaScript de manera fluida de
 
 ---
 
-# Props 
+# Props
 
 En React, **props** (abreviatura de "properties") son uno de los conceptos fundamentales para crear componentes dinámicos y reutilizables. Las props permiten que un componente reciba datos y comportamientos desde su componente padre, lo que facilita la creación de interfaces de usuario modulares y escalables.
 
@@ -2024,7 +2024,7 @@ Las props son un mecanismo para pasar datos desde un componente padre a un compo
 Puedes pasar props a un componente hijo como atributos en la etiqueta del componente. Cada atributo se convierte en una prop dentro del componente hijo.
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function App() {
   return (
@@ -2072,9 +2072,9 @@ Puedes definir valores por defecto para las props en caso de que no se pasen des
 #### **Ejemplo**:
 
 ```jsx
-import React from 'react';
+import React from "react";
 
-function Greeting({ name = 'Invitado' }) {
+function Greeting({ name = "Invitado" }) {
   return <h1>Hola, {name}!</h1>;
 }
 
@@ -2090,11 +2090,11 @@ Las props no solo se limitan a valores como cadenas o números; también puedes 
 #### **Ejemplo**:
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function App() {
   const handleClick = () => {
-    alert('Botón clickeado!');
+    alert("Botón clickeado!");
   };
 
   return <Button onClick={handleClick} />;
@@ -2116,16 +2116,12 @@ Puedes usar props para condicionar qué y cómo se renderiza algo en tu componen
 #### **Ejemplo**:
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function Alert({ type, message }) {
-  const alertStyle = type === 'success' ? 'green' : 'red';
+  const alertStyle = type === "success" ? "green" : "red";
 
-  return (
-    <div style={{ color: alertStyle }}>
-      {message}
-    </div>
-  );
+  return <div style={{ color: alertStyle }}>{message}</div>;
 }
 
 function App() {
@@ -2149,7 +2145,7 @@ export default App;
 #### **Ejemplo**:
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function Container({ children }) {
   return <div className="container">{children}</div>;
@@ -2182,8 +2178,8 @@ npm install prop-types
 #### **Ejemplo**:
 
 ```jsx
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 function Greeting({ name, age }) {
   return (
@@ -2211,7 +2207,7 @@ React enfatiza el uso de la composición sobre la herencia para construir compon
 #### **Ejemplo de Composición**:
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function Button({ children, onClick }) {
   return <button onClick={onClick}>{children}</button>;
@@ -2228,7 +2224,11 @@ function IconButton({ icon, label, onClick }) {
 export default function App() {
   return (
     <div>
-      <IconButton icon="⭐" label="Favorito" onClick={() => alert('Añadido a favoritos!')} />
+      <IconButton
+        icon="⭐"
+        label="Favorito"
+        onClick={() => alert("Añadido a favoritos!")}
+      />
     </div>
   );
 }
@@ -2255,7 +2255,7 @@ El destructuring es una característica de JavaScript introducida en ES6 que per
 Primero, veamos un ejemplo básico de cómo acceder a las props sin usar destructuring:
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function UserInfo(props) {
   return (
@@ -2279,7 +2279,7 @@ El destructuring de props te permite extraer directamente las propiedades en la 
 #### **Ejemplo con Destructuring**:
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function UserInfo({ name, age, country }) {
   return (
@@ -2303,9 +2303,9 @@ Puedes combinar destructuring con valores predeterminados para proporcionar un v
 #### **Ejemplo**:
 
 ```jsx
-import React from 'react';
+import React from "react";
 
-function UserInfo({ name = 'Invitado', age = 18, country = 'Desconocido' }) {
+function UserInfo({ name = "Invitado", age = 18, country = "Desconocido" }) {
   return (
     <div>
       <h1>Nombre: {name}</h1>
@@ -2327,9 +2327,15 @@ Si una prop es un objeto anidado, también puedes aplicar destructuring a esos o
 #### **Ejemplo**:
 
 ```jsx
-import React from 'react';
+import React from "react";
 
-function UserInfo({ user: { name, age, location: { city, country } } }) {
+function UserInfo({
+  user: {
+    name,
+    age,
+    location: { city, country },
+  },
+}) {
   return (
     <div>
       <h1>Nombre: {name}</h1>
@@ -2352,7 +2358,7 @@ El destructuring también se puede usar en componentes de clase, generalmente de
 #### **Ejemplo en Componente de Clase**:
 
 ```jsx
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class UserInfo extends Component {
   render() {
@@ -2379,7 +2385,7 @@ Si necesitas extraer algunas props y agrupar las restantes en un solo objeto, pu
 #### **Ejemplo con Rest Parameters**:
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function UserInfo({ name, age, ...rest }) {
   return (
@@ -2415,7 +2421,7 @@ En React, `props.children` es una característica especial que permite a los com
 Aquí tienes un ejemplo simple de cómo usar `props.children`:
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function Container({ children }) {
   return <div className="container">{children}</div>;
@@ -2444,7 +2450,7 @@ Uno de los usos más comunes de `props.children` es crear contenedores reutiliza
 #### **Ejemplo:**
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function Card({ children }) {
   return <div className="card">{children}</div>;
@@ -2477,7 +2483,7 @@ Puedes usar `props.children` para mostrar contenido condicionalmente dentro de u
 #### **Ejemplo:**
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function Modal({ children, isOpen }) {
   if (!isOpen) return null;
@@ -2516,11 +2522,11 @@ Puedes clonar y modificar elementos que se pasaron a través de `props.children`
 #### **Ejemplo:**
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function Wrapper({ children }) {
-  return React.Children.map(children, child =>
-    React.cloneElement(child, { style: { color: 'red' } })
+  return React.Children.map(children, (child) =>
+    React.cloneElement(child, { style: { color: "red" } })
   );
 }
 
@@ -2545,11 +2551,11 @@ Puedes contar o filtrar los elementos dentro de `props.children`.
 #### **Ejemplo:**
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function List({ children }) {
   const totalItems = React.Children.count(children);
-  
+
   return (
     <div>
       <p>Total de elementos: {totalItems}</p>
@@ -2580,18 +2586,18 @@ export default App;
 #### **Ejemplo:**
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function DataProvider({ data, children }) {
   return children(data);
 }
 
 function App() {
-  const data = { name: 'Juan', age: 30 };
+  const data = { name: "Juan", age: 30 };
 
   return (
     <DataProvider data={data}>
-      {data => (
+      {(data) => (
         <div>
           <h1>Nombre: {data.name}</h1>
           <p>Edad: {data.age}</p>
@@ -2625,7 +2631,7 @@ En este ejemplo, crearemos un componente que recibe un array de elementos como p
 Primero, definimos un componente `SimpleList` que recibirá los elementos de la lista como una prop llamada `items` y los mostrará en un elemento HTML `<ul>`.
 
 ```jsx
-import React from 'react';
+import React from "react";
 
 function SimpleList({ items }) {
   return (
@@ -2650,11 +2656,11 @@ export default SimpleList;
 Ahora podemos utilizar `SimpleList` en nuestra aplicación, pasando un array de elementos.
 
 ```jsx
-import React from 'react';
-import SimpleList from './SimpleList';
+import React from "react";
+import SimpleList from "./SimpleList";
 
 function App() {
-  const fruits = ['Manzana', 'Banana', 'Naranja', 'Uva'];
+  const fruits = ["Manzana", "Banana", "Naranja", "Uva"];
 
   return (
     <div>
@@ -2678,7 +2684,7 @@ Si quisieras que la lista fuera dinámica, podrías agregar un input y un botón
 #### **Ejemplo con Lista Dinámica**:
 
 ```jsx
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function SimpleList({ items }) {
   return (
@@ -2691,13 +2697,13 @@ function SimpleList({ items }) {
 }
 
 function App() {
-  const [fruits, setFruits] = useState(['Manzana', 'Banana', 'Naranja', 'Uva']);
-  const [newFruit, setNewFruit] = useState('');
+  const [fruits, setFruits] = useState(["Manzana", "Banana", "Naranja", "Uva"]);
+  const [newFruit, setNewFruit] = useState("");
 
   const addFruit = () => {
-    if (newFruit.trim() !== '') {
+    if (newFruit.trim() !== "") {
       setFruits([...fruits, newFruit]);
-      setNewFruit('');
+      setNewFruit("");
     }
   };
 
@@ -2730,3 +2736,566 @@ Esta "Simple List" es un buen punto de partida para trabajar con listas en React
 
 ---
 
+# Proper List
+
+Una "Proper List" en React se refiere a una lista más estructurada y probablemente más compleja que una "Simple List". A menudo, esto implica trabajar con datos más ricos (por ejemplo, objetos con múltiples propiedades) y puede incluir características adicionales como eventos de interacción, filtrado, ordenación, y más.
+
+### **1. Estructura Básica de una Proper List**
+
+Supongamos que quieres crear una lista de usuarios, donde cada usuario tiene un nombre, una edad y un correo electrónico. Vamos a crear un componente `UserList` que se encargará de renderizar esta lista.
+
+#### **Paso 1: Crear el Componente de Lista de Usuarios**
+
+Primero, definimos un componente `UserList` que recibe un array de objetos de usuarios y los renderiza en un `<ul>`.
+
+```jsx
+import React from "react";
+
+function UserList({ users }) {
+  return (
+    <ul>
+      {users.map((user) => (
+        <li key={user.id}>
+          <h3>{user.name}</h3>
+          <p>Edad: {user.age}</p>
+          <p>Email: {user.email}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default UserList;
+```
+
+- **Explicación**:
+  - `users.map((user) => ...)` recorre cada objeto `user` en el array `users`.
+  - Cada `user` tiene un `id`, `name`, `age`, y `email`, que se muestran en la lista.
+  - El `key` en cada `<li>` es único por usuario, asegurando que React maneje eficientemente la lista.
+
+#### **Paso 2: Usar el Componente en la Aplicación**
+
+Ahora, puedes usar `UserList` en tu aplicación principal, pasando un array de objetos de usuarios.
+
+```jsx
+import React from "react";
+import UserList from "./UserList";
+
+function App() {
+  const users = [
+    { id: 1, name: "Juan Pérez", age: 25, email: "juan@example.com" },
+    { id: 2, name: "María López", age: 30, email: "maria@example.com" },
+    { id: 3, name: "Carlos García", age: 28, email: "carlos@example.com" },
+  ];
+
+  return (
+    <div>
+      <h1>Lista de Usuarios</h1>
+      <UserList users={users} />
+    </div>
+  );
+}
+
+export default App;
+```
+
+- **Explicación**:
+  - Pasamos un array de objetos `users` al componente `UserList`.
+  - `UserList` renderiza la lista de usuarios, mostrando sus nombres, edades, y correos electrónicos.
+
+### **2. Añadir Funcionalidades Avanzadas**
+
+#### **a. Ordenar la Lista**
+
+Puedes agregar la funcionalidad de ordenar la lista por nombre o edad.
+
+```jsx
+import React, { useState } from "react";
+
+function UserList({ users }) {
+  return (
+    <ul>
+      {users.map((user) => (
+        <li key={user.id}>
+          <h3>{user.name}</h3>
+          <p>Edad: {user.age}</p>
+          <p>Email: {user.email}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function App() {
+  const [users, setUsers] = useState([
+    { id: 1, name: "Juan Pérez", age: 25, email: "juan@example.com" },
+    { id: 2, name: "María López", age: 30, email: "maria@example.com" },
+    { id: 3, name: "Carlos García", age: 28, email: "carlos@example.com" },
+  ]);
+
+  const sortByName = () => {
+    const sortedUsers = [...users].sort((a, b) => a.name.localeCompare(b.name));
+    setUsers(sortedUsers);
+  };
+
+  const sortByAge = () => {
+    const sortedUsers = [...users].sort((a, b) => a.age - b.age);
+    setUsers(sortedUsers);
+  };
+
+  return (
+    <div>
+      <h1>Lista de Usuarios</h1>
+      <button onClick={sortByName}>Ordenar por Nombre</button>
+      <button onClick={sortByAge}>Ordenar por Edad</button>
+      <UserList users={users} />
+    </div>
+  );
+}
+
+export default App;
+```
+
+- **Explicación**:
+  - `sortByName` ordena los usuarios alfabéticamente por nombre.
+  - `sortByAge` ordena los usuarios por edad.
+  - Ambos métodos actualizan el estado `users`, lo que desencadena un re-render de `UserList`.
+
+#### **b. Filtrar la Lista**
+
+Puedes agregar un input para filtrar la lista por nombre.
+
+```jsx
+import React, { useState } from "react";
+
+function UserList({ users }) {
+  return (
+    <ul>
+      {users.map((user) => (
+        <li key={user.id}>
+          <h3>{user.name}</h3>
+          <p>Edad: {user.age}</p>
+          <p>Email: {user.email}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function App() {
+  const [users, setUsers] = useState([
+    { id: 1, name: "Juan Pérez", age: 25, email: "juan@example.com" },
+    { id: 2, name: "María López", age: 30, email: "maria@example.com" },
+    { id: 3, name: "Carlos García", age: 28, email: "carlos@example.com" },
+  ]);
+
+  const [filter, setFilter] = useState("");
+
+  const filteredUsers = users.filter((user) =>
+    user.name.toLowerCase().includes(filter.toLowerCase())
+  );
+
+  return (
+    <div>
+      <h1>Lista de Usuarios</h1>
+      <input
+        type="text"
+        placeholder="Buscar por nombre"
+        value={filter}
+        onChange={(e) => setFilter(e.target.value)}
+      />
+      <UserList users={filteredUsers} />
+    </div>
+  );
+}
+
+export default App;
+```
+
+- **Explicación**:
+  - `filter` mantiene el estado del texto de búsqueda.
+  - `filteredUsers` es un array de usuarios que coinciden con el texto de búsqueda.
+  - `UserList` renderiza solo los usuarios que cumplen con el criterio de búsqueda.
+
+### **3. Manejo de Eventos en la Lista**
+
+Puedes agregar funcionalidad para manejar eventos, como hacer clic en un usuario para mostrar detalles adicionales.
+
+```jsx
+import React, { useState } from "react";
+
+function UserList({ users, onUserClick }) {
+  return (
+    <ul>
+      {users.map((user) => (
+        <li key={user.id} onClick={() => onUserClick(user)}>
+          <h3>{user.name}</h3>
+          <p>Edad: {user.age}</p>
+          <p>Email: {user.email}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function App() {
+  const [users, setUsers] = useState([
+    { id: 1, name: "Juan Pérez", age: 25, email: "juan@example.com" },
+    { id: 2, name: "María López", age: 30, email: "maria@example.com" },
+    { id: 3, name: "Carlos García", age: 28, email: "carlos@example.com" },
+  ]);
+
+  const [selectedUser, setSelectedUser] = useState(null);
+
+  const handleUserClick = (user) => {
+    setSelectedUser(user);
+  };
+
+  return (
+    <div>
+      <h1>Lista de Usuarios</h1>
+      <UserList users={users} onUserClick={handleUserClick} />
+      {selectedUser && (
+        <div>
+          <h2>Detalles del Usuario</h2>
+          <p>Nombre: {selectedUser.name}</p>
+          <p>Edad: {selectedUser.age}</p>
+          <p>Email: {selectedUser.email}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default App;
+```
+
+- **Explicación**:
+  - `onUserClick` es una función que se pasa como prop a `UserList`. Se ejecuta cuando se hace clic en un usuario.
+  - `handleUserClick` establece el usuario seleccionado en el estado `selectedUser`.
+  - Si un usuario está seleccionado, se muestran detalles adicionales en la interfaz.
+
+### **Conclusión**
+
+Una "Proper List" en React no solo muestra datos, sino que también puede incluir características avanzadas como ordenación, filtrado, y manejo de eventos. Este tipo de lista es común en aplicaciones reales donde se trabaja con conjuntos de datos más complejos.
+
+---
+
+# Key Props And Spread Operator
+
+### **Key Props en React**
+
+En React, el concepto de `key` es crucial cuando se renderizan listas de elementos. Cada vez que se crea una lista de componentes dinámicamente (por ejemplo, usando `map`), se debe proporcionar una `key` única para cada elemento. Esto ayuda a React a identificar qué elementos han cambiado, agregado o eliminado, y optimiza la re-renderización.
+
+#### **1. ¿Qué es una `key`?**
+
+- **Propósito**: Una `key` es un identificador único que React utiliza para seguir la pista de los elementos en una lista.
+- **Por qué es importante**: Sin `key`, React no puede identificar correctamente los elementos de una lista que han cambiado, lo que puede llevar a errores de renderización y problemas de rendimiento.
+
+#### **2. Uso de `key` en una Lista**
+
+Cuando renderizas una lista de elementos, debes proporcionar una `key` para cada elemento. Generalmente, la `key` debe ser algo único que identifique ese elemento de forma consistente, como un `id`.
+
+```jsx
+import React from "react";
+
+function UserList({ users }) {
+  return (
+    <ul>
+      {users.map((user) => (
+        <li key={user.id}>
+          <h3>{user.name}</h3>
+          <p>Edad: {user.age}</p>
+          <p>Email: {user.email}</p>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+export default UserList;
+```
+
+- **Explicación**:
+  - `key={user.id}`: Aquí, `user.id` actúa como la `key` única para cada elemento en la lista. Esto ayuda a React a identificar y gestionar eficientemente cada elemento.
+
+#### **3. Errores Comunes con `key`**
+
+- **Usar índices como `key`**: Aunque es posible usar el índice de un array como `key` (`key={index}`), no es recomendable en la mayoría de los casos, especialmente si el orden de los elementos puede cambiar, ya que puede llevar a comportamientos inesperados.
+- **Duplicar `key`**: Cada `key` debe ser única en el contexto de la lista. Si dos elementos tienen la misma `key`, React no podrá distinguir entre ellos, lo que puede causar errores.
+
+### **Spread Operator (`...`) en JavaScript**
+
+El **spread operator** (`...`) es una característica de JavaScript que permite "expandir" un iterable (como un array o un objeto) en lugares donde se esperan múltiples elementos. Es muy útil para copiar arrays u objetos, combinar arrays, pasar argumentos a funciones, y más.
+
+#### **1. Uso del Spread Operator con Arrays**
+
+El spread operator puede usarse para copiar o combinar arrays.
+
+```javascript
+const array1 = [1, 2, 3];
+const array2 = [4, 5, 6];
+
+const combinedArray = [...array1, ...array2];
+console.log(combinedArray); // [1, 2, 3, 4, 5, 6]
+```
+
+- **Explicación**:
+  - `...array1` expande los elementos de `array1` y los coloca en `combinedArray`.
+  - `...array2` hace lo mismo para `array2`.
+
+#### **2. Uso del Spread Operator con Objetos**
+
+También puedes usar el spread operator para copiar objetos o combinarlos.
+
+```javascript
+const user = { name: "Juan", age: 25 };
+const updatedUser = { ...user, email: "juan@example.com" };
+
+console.log(updatedUser); // { name: 'Juan', age: 25, email: 'juan@example.com' }
+```
+
+- **Explicación**:
+  - `...user` copia todas las propiedades de `user` en `updatedUser`.
+  - Luego, puedes añadir o sobreescribir propiedades en `updatedUser`, como en el caso de `email`.
+
+#### **3. Uso del Spread Operator en Props de Componentes de React**
+
+En React, el spread operator es muy útil para pasar todas las propiedades de un objeto como props a un componente.
+
+```jsx
+import React from "react";
+
+function UserCard({ name, age, email }) {
+  return (
+    <div>
+      <h3>{name}</h3>
+      <p>Edad: {age}</p>
+      <p>Email: {email}</p>
+    </div>
+  );
+}
+
+function App() {
+  const user = { name: "Juan Pérez", age: 25, email: "juan@example.com" };
+
+  return (
+    <div>
+      <UserCard {...user} />
+    </div>
+  );
+}
+
+export default App;
+```
+
+- **Explicación**:
+  - `...user` expande las propiedades de `user` (`name`, `age`, `email`) y las pasa como props individuales al componente `UserCard`.
+  - Esto es muy útil para mantener el código limpio y manejable cuando tienes muchas props.
+
+### **Conclusión**
+
+- **Key Props**: Son esenciales para ayudar a React a identificar y gestionar eficientemente los elementos en una lista. Deben ser únicas y constantes.
+- **Spread Operator**: Es una herramienta poderosa en JavaScript que te permite expandir arrays y objetos, facilitando la manipulación de datos y la transmisión de props en React.
+
+Estos conceptos son fundamentales en React y JavaScript moderno, y dominarlos te permitirá escribir código más limpio, eficiente y fácil de mantener.
+
+---
+
+# Event Basics
+
+Los **eventos** en React son una parte fundamental de cómo los componentes interactúan con los usuarios. Los eventos permiten que los componentes reaccionen a las acciones del usuario, como clics, cambios en formularios, envíos de formularios, y más.
+
+### **1. Manejo Básico de Eventos**
+
+En React, los eventos funcionan de manera similar a los eventos en JavaScript, pero con algunas diferencias importantes:
+
+- Los eventos en React están escritos en camelCase (por ejemplo, `onClick` en lugar de `onclick`).
+- En lugar de pasar una cadena de texto, se pasa una función como el manejador del evento.
+
+#### **Ejemplo Básico: onClick**
+
+El evento `onClick` es uno de los eventos más comunes. Se activa cuando el usuario hace clic en un elemento.
+
+```jsx
+import React from "react";
+
+function App() {
+  const handleClick = () => {
+    alert("¡Botón clickeado!");
+  };
+
+  return (
+    <div>
+      <button onClick={handleClick}>Haz clic aquí</button>
+    </div>
+  );
+}
+
+export default App;
+```
+
+- **Explicación**:
+  - `onClick={handleClick}`: Vincula el evento `onClick` del botón a la función `handleClick`.
+  - Cuando el usuario hace clic en el botón, se dispara la alerta.
+
+#### **Ejemplo Básico: onChange**
+
+El evento `onChange` se utiliza comúnmente con formularios, como inputs y selects. Se dispara cuando el valor de un campo cambia.
+
+```jsx
+import React, { useState } from "react";
+
+function App() {
+  const [text, setText] = useState("");
+
+  const handleChange = (event) => {
+    setText(event.target.value);
+  };
+
+  return (
+    <div>
+      <input type="text" value={text} onChange={handleChange} />
+      <p>El texto ingresado es: {text}</p>
+    </div>
+  );
+}
+
+export default App;
+```
+
+- **Explicación**:
+  - `onChange={handleChange}`: Vincula el evento `onChange` del input a la función `handleChange`.
+  - `event.target.value` contiene el valor actual del input, y `setText` actualiza el estado con ese valor.
+
+### **2. Event Object en React**
+
+Cuando se maneja un evento en React, se pasa un objeto de evento (similar al objeto `event` en JavaScript puro) al manejador de eventos. Este objeto contiene información útil sobre el evento que ocurrió.
+
+#### **Ejemplo: Usando el Event Object**
+
+```jsx
+import React from "react";
+
+function App() {
+  const handleClick = (event) => {
+    console.log("Tipo de evento:", event.type);
+    console.log("Elemento clickeado:", event.target);
+  };
+
+  return (
+    <div>
+      <button onClick={handleClick}>Haz clic aquí</button>
+    </div>
+  );
+}
+
+export default App;
+```
+
+- **Explicación**:
+  - `event.type` devuelve el tipo de evento (por ejemplo, `"click"`).
+  - `event.target` devuelve el elemento que disparó el evento (en este caso, el botón).
+
+### **3. Previniendo Comportamientos Predeterminados**
+
+En algunos casos, querrás prevenir el comportamiento predeterminado de un evento, como cuando un formulario intenta enviar datos y recargar la página. Para ello, se usa `event.preventDefault()`.
+
+#### **Ejemplo: Prevenir el Envío de un Formulario**
+
+```jsx
+import React, { useState } from "react";
+
+function App() {
+  const [text, setText] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault(); // Previene el envío del formulario
+    alert(`Formulario enviado con el texto: ${text}`);
+  };
+
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
+        <button type="submit">Enviar</button>
+      </form>
+    </div>
+  );
+}
+
+export default App;
+```
+
+- **Explicación**:
+  - `event.preventDefault()`: Previene el comportamiento predeterminado del envío del formulario, que sería recargar la página.
+  - El formulario no se envía de manera tradicional, y en su lugar se ejecuta la lógica dentro de `handleSubmit`.
+
+### **4. Pasando Parámetros a los Manejadores de Eventos**
+
+A veces necesitas pasar parámetros adicionales a los manejadores de eventos. Puedes hacerlo envolviendo la función en una función flecha.
+
+#### **Ejemplo: Pasando Parámetros a un Manejador de Eventos**
+
+```jsx
+import React from "react";
+
+function App() {
+  const handleClick = (name) => {
+    alert(`¡Hola, ${name}!`);
+  };
+
+  return (
+    <div>
+      <button onClick={() => handleClick("Juan")}>Saludar a Juan</button>
+      <button onClick={() => handleClick("María")}>Saludar a María</button>
+    </div>
+  );
+}
+
+export default App;
+```
+
+- **Explicación**:
+  - `onClick={() => handleClick('Juan')}`: Pasa `'Juan'` como parámetro a la función `handleClick`.
+  - Cada botón llama a `handleClick` con un parámetro diferente, mostrando un saludo personalizado.
+
+### **5. Manejo de Eventos en Componentes de Clase**
+
+Aunque la mayoría de los desarrollos modernos en React utilizan componentes funcionales, es útil conocer cómo se manejan los eventos en componentes de clase.
+
+#### **Ejemplo: Manejo de Eventos en un Componente de Clase**
+
+```jsx
+import React, { Component } from "react";
+
+class App extends Component {
+  handleClick = () => {
+    alert("¡Botón clickeado en un componente de clase!");
+  };
+
+  render() {
+    return (
+      <div>
+        <button onClick={this.handleClick}>Haz clic aquí</button>
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+- **Explicación**:
+  - `handleClick` es un método de la clase, pero se escribe como una propiedad de clase con una función flecha para asegurar que `this` esté correctamente enlazado.
+  - En el método `render`, `this.handleClick` se usa como el manejador del evento `onClick`.
+
+### **Conclusión**
+
+Los eventos en React son similares a los eventos en JavaScript, pero están adaptados para el flujo de trabajo de React. Saber cómo manejar eventos es crucial para crear aplicaciones interactivas. Los puntos clave incluyen cómo vincular eventos, el uso del objeto de evento, la prevención de comportamientos predeterminados y el manejo de eventos en componentes de clase y funcionales.
+
+---
