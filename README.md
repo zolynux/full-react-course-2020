@@ -3311,6 +3311,7 @@ Para que una parte de tu código (como una función, una variable, un componente
 #### **Tipos de Exportaciones**
 
 1. **Exportación Nombrada (`named export`)**:
+
    - Puedes exportar múltiples elementos desde un solo archivo.
    - Cada elemento debe ser importado usando su nombre exacto.
 
@@ -3324,13 +3325,14 @@ Para que una parte de tu código (como una función, una variable, un componente
      return PI * radius * radius;
    }
 
-   export const author = 'Juan Pérez';
+   export const author = "Juan Pérez";
    ```
 
    - Aquí, `PI`, `calculateArea`, y `author` son exportaciones nombradas.
    - Se exportan con `export` delante de la declaración.
 
 2. **Exportación por Defecto (`default export`)**:
+
    - Cada archivo puede tener solo una exportación por defecto.
    - El elemento exportado por defecto puede ser importado con cualquier nombre.
 
@@ -3352,6 +3354,7 @@ Una vez que has exportado algo, puedes **importarlo** en otro archivo para usarl
 #### **Tipos de Importaciones**
 
 1. **Importación de Exportaciones Nombradas**:
+
    - Se importan usando el mismo nombre con el que fueron exportadas.
    - Puedes importar una o varias exportaciones nombradas de un archivo.
 
@@ -3359,7 +3362,7 @@ Una vez que has exportado algo, puedes **importarlo** en otro archivo para usarl
 
    ```javascript
    // app.js
-   import { PI, calculateArea, author } from './utils';
+   import { PI, calculateArea, author } from "./utils";
 
    console.log(`El área es: ${calculateArea(5)}`);
    console.log(`Autor: ${author}`);
@@ -3369,13 +3372,14 @@ Una vez que has exportado algo, puedes **importarlo** en otro archivo para usarl
    - Debes usar el mismo nombre que en la exportación.
 
 2. **Importación de la Exportación por Defecto**:
+
    - Puedes importar la exportación por defecto con cualquier nombre.
 
    **Ejemplo: Importando la Exportación por Defecto**
 
    ```javascript
    // main.js
-   import calculateCircumference from './math';
+   import calculateCircumference from "./math";
 
    console.log(`La circunferencia es: ${calculateCircumference(10)}`);
    ```
@@ -3383,13 +3387,14 @@ Una vez que has exportado algo, puedes **importarlo** en otro archivo para usarl
    - Aquí, `calculateCircumference` se importa desde `math.js` y se puede nombrar como desees.
 
 3. **Importaciones Combinadas**:
+
    - Puedes combinar la importación de exportaciones nombradas y la exportación por defecto en una sola línea.
 
    **Ejemplo: Importaciones Combinadas**
 
    ```javascript
    // combined.js
-   import calculateCircumference, { PI, author } from './utils';
+   import calculateCircumference, { PI, author } from "./utils";
 
    console.log(`PI es: ${PI}`);
    console.log(`Circunferencia: ${calculateCircumference(10)}`);
@@ -3406,7 +3411,7 @@ Puedes renombrar las exportaciones nombradas durante la importación utilizando 
 
 ```javascript
 // app.js
-import { calculateArea as calcArea, author as writer } from './utils';
+import { calculateArea as calcArea, author as writer } from "./utils";
 
 console.log(`El área es: ${calcArea(5)}`);
 console.log(`Escrito por: ${writer}`);
@@ -3422,7 +3427,7 @@ Puedes exportar todo el contenido de un archivo a otro utilizando el `export * f
 
 ```javascript
 // allUtils.js
-export * from './utils';
+export * from "./utils";
 ```
 
 - Esto re-exporta todo lo que está en `utils.js` desde `allUtils.js`.
@@ -3485,6 +3490,7 @@ npm run build
 ### **Ejemplo Práctico: Desplegar una Aplicación React en Netlify**
 
 1. **Crear el Build**:
+
    ```bash
    npm run build
    ```
@@ -3493,8 +3499,8 @@ npm run build
    - Ve a [Netlify](https://www.netlify.com/) y crea una cuenta.
    - Una vez dentro, selecciona "New site from Git" para conectar tu repositorio, o "Deploy site" si quieres subir el build manualmente.
    - Arrastra y suelta la carpeta `build/` dentro de la interfaz de Netlify si haces el despliegue manual.
-   
 3. **Configurar el Proyecto**:
+
    - Netlify detectará automáticamente que es una aplicación React y la configurará para ti.
    - Puedes añadir un dominio personalizado si lo deseas.
 
@@ -3518,7 +3524,7 @@ El hook `useState` es una función que te permite añadir **estado** a los compo
 #### **Ejemplo Básico**:
 
 ```jsx
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function Counter() {
   const [count, setCount] = useState(0); // useState inicializa el estado en 0
@@ -3544,7 +3550,7 @@ El hook `useEffect` se utiliza para manejar **efectos secundarios** en los compo
 #### **Ejemplo Básico**:
 
 ```jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 function Example() {
   const [count, setCount] = useState(0);
@@ -3553,7 +3559,7 @@ function Example() {
     document.title = `You clicked ${count} times`;
 
     return () => {
-      console.log('Cleanup function'); // Se ejecuta al desmontar o actualizar
+      console.log("Cleanup function"); // Se ejecuta al desmontar o actualizar
     };
   }, [count]); // Solo se ejecuta cuando `count` cambia
 
@@ -3578,16 +3584,20 @@ El **renderizado condicional** es cómo puedes decidir qué componentes o elemen
 #### **Ejemplo Básico**:
 
 ```jsx
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function Greeting() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   return (
     <div>
-      {isLoggedIn ? <h1>Bienvenido de nuevo!</h1> : <h1>Por favor, inicia sesión.</h1>}
+      {isLoggedIn ? (
+        <h1>Bienvenido de nuevo!</h1>
+      ) : (
+        <h1>Por favor, inicia sesión.</h1>
+      )}
       <button onClick={() => setIsLoggedIn(!isLoggedIn)}>
-        {isLoggedIn ? 'Cerrar sesión' : 'Iniciar sesión'}
+        {isLoggedIn ? "Cerrar sesión" : "Iniciar sesión"}
       </button>
     </div>
   );
@@ -3605,10 +3615,10 @@ El manejo de **formularios** en React implica capturar y procesar entradas del u
 #### **Ejemplo Básico**:
 
 ```jsx
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function MyForm() {
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -3643,7 +3653,7 @@ El hook `useRef` es una forma de acceder directamente a un elemento DOM en un co
 #### **Ejemplo Básico**:
 
 ```jsx
-import React, { useRef } from 'react';
+import React, { useRef } from "react";
 
 function TextInputWithFocusButton() {
   const inputEl = useRef(null);
@@ -3673,13 +3683,13 @@ El hook `useReducer` es una alternativa a `useState` para manejar el estado en c
 #### **Ejemplo Básico**:
 
 ```jsx
-import React, { useReducer } from 'react';
+import React, { useReducer } from "react";
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'increment':
+    case "increment":
       return { count: state.count + 1 };
-    case 'decrement':
+    case "decrement":
       return { count: state.count - 1 };
     default:
       return state;
@@ -3692,8 +3702,12 @@ function Counter() {
   return (
     <div>
       <p>Contador: {state.count}</p>
-      <button onClick={() => dispatch({ type: 'increment' })}>Incrementar</button>
-      <button onClick={() => dispatch({ type: 'decrement' })}>Decrementar</button>
+      <button onClick={() => dispatch({ type: "increment" })}>
+        Incrementar
+      </button>
+      <button onClick={() => dispatch({ type: "decrement" })}>
+        Decrementar
+      </button>
     </div>
   );
 }
@@ -3712,7 +3726,7 @@ El **prop drilling** se refiere al proceso de pasar datos de un componente padre
 
 ```jsx
 function Grandparent() {
-  const name = 'Juan';
+  const name = "Juan";
   return <Parent name={name} />;
 }
 
@@ -3734,12 +3748,12 @@ La **Context API** de React es una solución para evitar el prop drilling. Permi
 #### **Ejemplo Básico**:
 
 ```jsx
-import React, { useContext, createContext } from 'react';
+import React, { useContext, createContext } from "react";
 
 const NameContext = createContext();
 
 function Grandparent() {
-  const name = 'Juan';
+  const name = "Juan";
   return (
     <NameContext.Provider value={name}>
       <Parent />
@@ -3764,6 +3778,190 @@ function Child() {
 
 Estos conceptos avanzados de React son cruciales para manejar estados, efectos, formularios, renderizado condicional y la gestión del flujo de datos en una aplicación. Entender y dominar estos elementos te permitirá construir aplicaciones React más robustas y mantenibles.
 
+---
+
+# useState Simple Use Case
+
+Estos títulos y proyectos corresponden a aplicaciones o componentes comunes que se pueden construir utilizando diferentes hooks y características de React. Cada proyecto está diseñado para enseñarte un concepto o patrón específico de React. A continuación te explico en qué consiste cada proyecto en español y cómo se relaciona con los hooks o características mencionadas.
+
+### **Proyectos Correspondientes**
+
+#### **useState**
+
+1. **Birthday Reminder (Recordatorio de Cumpleaños)**
+   - **Descripción**: Este proyecto es un simple recordatorio de cumpleaños que muestra una lista de personas con sus nombres y fechas de cumpleaños. Utiliza `useState` para manejar el estado de la lista de cumpleaños y para eliminar elementos de la lista.
+   - **Objetivo**: Practicar el uso de `useState` para manejar listas y actualizar el estado del componente.
+
+#### **useEffect and Conditional Rendering**
+
+2. **Tours (Tours)**
+
+   - **Descripción**: Un proyecto que muestra una lista de tours disponibles. Puedes cargar los datos desde una API usando `useEffect` y manejar el renderizado condicional para mostrar mensajes de carga o errores si algo sale mal.
+   - **Objetivo**: Aprender a usar `useEffect` para manejar efectos secundarios como llamadas a API y usar renderizado condicional para manejar diferentes estados (cargando, error, datos).
+
+3. **Reviews (Reseñas)**
+
+   - **Descripción**: Muestra reseñas de productos o servicios con la posibilidad de navegar entre diferentes reseñas. Puedes utilizar `useState` para manejar el índice de la reseña actual y renderizado condicional para mostrar contenido diferente según la reseña seleccionada.
+   - **Objetivo**: Practicar el manejo de estado con `useState` y el renderizado condicional.
+
+4. **Accordion (Acordeón)**
+
+   - **Descripción**: Un componente de acordeón donde se muestran y ocultan secciones de contenido al hacer clic. Utiliza `useState` para manejar qué sección del acordeón está abierta y `useEffect` si necesitas realizar alguna acción secundaria.
+   - **Objetivo**: Aprender a manejar la visibilidad de elementos con `useState` y renderizado condicional.
+
+5. **Menu (Menú)**
+
+   - **Descripción**: Muestra un menú de restaurante donde puedes filtrar elementos por categoría. Utiliza `useState` para manejar el estado de los elementos del menú y `useEffect` para cargar los datos.
+   - **Objetivo**: Practicar el manejo de estado y renderizado condicional para filtrar elementos en una lista.
+
+6. **Tabs (Pestañas)**
+
+   - **Descripción**: Crea un componente con pestañas (tabs) donde se muestra diferente contenido al seleccionar cada pestaña. Utiliza `useState` para manejar la pestaña activa y renderizado condicional para mostrar el contenido correspondiente.
+   - **Objetivo**: Aprender a manejar el estado de componentes que cambian su contenido basado en la interacción del usuario.
+
+7. **Slider (Deslizador)**
+   - **Descripción**: Un carrusel de imágenes o contenido que se desplaza automáticamente o con la interacción del usuario. Utiliza `useState` para manejar el índice actual del slide y `useEffect` para configurar intervalos de tiempo para el deslizamiento automático.
+   - **Objetivo**: Practicar el uso de `useState` para manejar el estado de un carrusel y `useEffect` para implementar funcionalidades temporizadas.
+
+#### **Forms**
+
+8. **Lorem Ipsum Generator (Generador de Lorem Ipsum)**
+
+   - **Descripción**: Un generador de texto falso donde el usuario puede seleccionar la cantidad de párrafos o palabras. Utiliza `useState` para manejar los valores de entrada del formulario y renderizado condicional para mostrar el resultado.
+   - **Objetivo**: Aprender a manejar formularios en React y a trabajar con entradas del usuario.
+
+9. **Color Shades Generator (Generador de Tonos de Color)**
+
+   - **Descripción**: Una aplicación que genera diferentes tonos de un color dado. Utiliza `useState` para manejar los valores de entrada del color y para almacenar los tonos generados.
+   - **Objetivo**: Practicar el uso de formularios y la manipulación de datos generados a partir de entradas del usuario.
+
+10. **Grocery Bud (Lista de Compras)**
+    - **Descripción**: Una aplicación simple de lista de compras donde puedes agregar, editar y eliminar elementos. Utiliza `useState` para manejar el estado de la lista y los valores de entrada del formulario.
+    - **Objetivo**: Practicar el manejo de formularios y listas dinámicas en React.
+
+#### **useRef**
+
+11. **Navbar (Barra de Navegación)**
+    - **Descripción**: Crea una barra de navegación con efectos de desplazamiento o que colapsa/expande automáticamente. Utiliza `useRef` para acceder directamente a elementos del DOM, como la altura de la barra de navegación.
+    - **Objetivo**: Aprender a utilizar `useRef` para interactuar con el DOM y controlar el comportamiento de la barra de navegación.
+
+#### **useContext**
+
+12. **Modal and Sidebar (Modal y Barra Lateral)**
+
+    - **Descripción**: Implementa un modal (ventana emergente) y una barra lateral que se abren o cierran según la interacción del usuario. Utiliza `useContext` para compartir el estado de visibilidad entre componentes.
+    - **Objetivo**: Practicar el uso de `useContext` para manejar estados compartidos entre múltiples componentes.
+
+13. **Stripe Menus (Menús de Stripe)**
+    - **Descripción**: Replica el menú desplegable de Stripe, donde diferentes opciones y submenús aparecen al pasar el mouse sobre diferentes áreas. Utiliza `useContext` para manejar el estado del menú y su visibilidad.
+    - **Objetivo**: Aprender a manejar menús complejos y estados compartidos utilizando `useContext`.
+
+#### **useReducer and useContext**
+
+14. **Cart (Carrito de Compras)**
+    - **Descripción**: Crea un carrito de compras donde puedes agregar, eliminar y modificar la cantidad de productos. Utiliza `useReducer` para manejar el estado del carrito y `useContext` para compartir ese estado entre diferentes componentes.
+    - **Objetivo**: Practicar el manejo de estados complejos utilizando `useReducer` y compartir estados globales usando `useContext`.
+
+#### **React Router**
+
+- **Descripción**: React Router es una librería que se utiliza para manejar la navegación entre diferentes páginas o vistas en una aplicación React de manera declarativa. Puedes crear rutas que representen diferentes páginas, y React Router se encargará de renderizar los componentes correspondientes basados en la URL actual.
+- **Objetivo**: Aprender a manejar la navegación y la creación de rutas en una aplicación React.
+
+### **Conclusión**
+
+Cada uno de estos proyectos está diseñado para enseñarte diferentes aspectos y prácticas de React, desde manejar estados simples con `useState` hasta manejar la navegación en aplicaciones más grandes con React Router. Estos proyectos son fundamentales para desarrollar una comprensión profunda de cómo construir aplicaciones React dinámicas y eficientes.
 
 ---
 
+# useState Basics
+
+El hook `useState` es uno de los más básicos y esenciales en React, ya que permite a los componentes funcionales manejar su propio estado interno. Antes de la introducción de hooks, el estado solo podía ser manejado por componentes de clase, pero con `useState`, los componentes funcionales también pueden gestionar el estado, lo que hace que el código sea más sencillo y fácil de leer.
+
+### **¿Qué es el Estado?**
+
+El **estado** en React es un objeto que contiene información sobre cómo debería comportarse y renderizarse un componente. Cuando el estado cambia, React vuelve a renderizar el componente para reflejar esos cambios en la interfaz de usuario.
+
+### **`useState`: Introducción Básica**
+
+`useState` es un hook que permite agregar estado a un componente funcional. Se utiliza para declarar una variable de estado y una función para actualizarla.
+
+#### **Sintaxis Básica**:
+
+```javascript
+const [state, setState] = useState(initialState);
+```
+
+- **`state`**: Es el valor actual del estado.
+- **`setState`**: Es la función que se utiliza para actualizar el valor del estado.
+- **`initialState`**: Es el valor inicial del estado cuando el componente se monta por primera vez.
+
+### **Ejemplo Básico de `useState`**
+
+Vamos a ver un ejemplo sencillo donde utilizamos `useState` para manejar un contador que incrementa cada vez que se presiona un botón.
+
+```jsx
+import React, { useState } from "react";
+
+function Counter() {
+  // Declaración del estado "count" con un valor inicial de 0
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>Has clickeado {count} veces</p>
+      <button onClick={() => setCount(count + 1)}>Incrementar</button>
+    </div>
+  );
+}
+
+export default Counter;
+```
+
+#### **Cómo Funciona el Ejemplo:**
+
+1. **`useState(0)`**: Inicializa el estado `count` en `0`.
+2. **`count`**: Es el valor actual del estado. Se renderiza en el párrafo `<p>Has clickeado {count} veces</p>`.
+3. **`setCount(count + 1)`**: Actualiza el valor del estado cada vez que se hace clic en el botón, incrementando `count` en `1`.
+4. **Re-renderizado**: Cada vez que se actualiza el estado con `setCount`, el componente se vuelve a renderizar con el nuevo valor de `count`.
+
+### **Manejo de Estado Complejo**
+
+Aunque el ejemplo anterior es muy básico, `useState` también se puede utilizar para manejar estados más complejos, como objetos o arreglos.
+
+#### **Ejemplo con un Objeto como Estado**:
+
+```jsx
+import React, { useState } from "react";
+
+function UserProfile() {
+  // Estado inicial con un objeto que contiene varias propiedades
+  const [user, setUser] = useState({ name: "Juan", age: 30 });
+
+  const updateName = () => {
+    setUser({ ...user, name: "Carlos" }); // Actualiza solo el nombre
+  };
+
+  return (
+    <div>
+      <p>Nombre: {user.name}</p>
+      <p>Edad: {user.age}</p>
+      <button onClick={updateName}>Actualizar Nombre</button>
+    </div>
+  );
+}
+
+export default UserProfile;
+```
+
+- **`{ ...user, name: 'Carlos' }`**: Se usa el operador de propagación (`...`) para copiar el estado actual del objeto `user` y luego actualizar solo la propiedad `name` sin modificar `age`.
+
+### **Reglas para Usar `useState`**
+
+- **Solo en Componentes Funcionales**: `useState` solo puede usarse dentro de componentes funcionales o dentro de otros hooks personalizados.
+- **Orden de Llamada Consistente**: Los hooks deben ser llamados en el mismo orden en cada render. No deben ser usados dentro de condicionales, bucles, o funciones anidadas.
+
+### **Conclusión**
+
+`useState` es fundamental para manejar el estado en componentes funcionales de React. Permite crear aplicaciones dinámicas y reactivas, donde los cambios en el estado se reflejan automáticamente en la interfaz de usuario. A medida que te sientas más cómodo con `useState`, podrás explorar otros hooks como `useEffect` para manejar efectos secundarios, o `useReducer` para manejar estados más complejos.
+
+---
