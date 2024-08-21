@@ -3299,3 +3299,471 @@ export default App;
 Los eventos en React son similares a los eventos en JavaScript, pero están adaptados para el flujo de trabajo de React. Saber cómo manejar eventos es crucial para crear aplicaciones interactivas. Los puntos clave incluyen cómo vincular eventos, el uso del objeto de evento, la prevención de comportamientos predeterminados y el manejo de eventos en componentes de clase y funcionales.
 
 ---
+
+# Import and Export Statements
+
+Las declaraciones **import** y **export** en JavaScript (y por extensión, en React) son fundamentales para organizar y reutilizar el código en diferentes archivos y módulos. Estas declaraciones permiten dividir tu aplicación en módulos que pueden ser importados y exportados según sea necesario, lo que facilita el mantenimiento y la escalabilidad del código.
+
+### **1. Export: Cómo Exportar Código**
+
+Para que una parte de tu código (como una función, una variable, un componente, etc.) esté disponible para ser utilizada en otros archivos, primero debes **exportarla**.
+
+#### **Tipos de Exportaciones**
+
+1. **Exportación Nombrada (`named export`)**:
+   - Puedes exportar múltiples elementos desde un solo archivo.
+   - Cada elemento debe ser importado usando su nombre exacto.
+
+   **Ejemplo: Exportación Nombrada**
+
+   ```javascript
+   // utils.js
+   export const PI = 3.14;
+
+   export function calculateArea(radius) {
+     return PI * radius * radius;
+   }
+
+   export const author = 'Juan Pérez';
+   ```
+
+   - Aquí, `PI`, `calculateArea`, y `author` son exportaciones nombradas.
+   - Se exportan con `export` delante de la declaración.
+
+2. **Exportación por Defecto (`default export`)**:
+   - Cada archivo puede tener solo una exportación por defecto.
+   - El elemento exportado por defecto puede ser importado con cualquier nombre.
+
+   **Ejemplo: Exportación por Defecto**
+
+   ```javascript
+   // math.js
+   export default function calculateCircumference(diameter) {
+     return PI * diameter;
+   }
+   ```
+
+   - Aquí, `calculateCircumference` es la exportación por defecto del archivo.
+
+### **2. Import: Cómo Importar Código**
+
+Una vez que has exportado algo, puedes **importarlo** en otro archivo para usarlo.
+
+#### **Tipos de Importaciones**
+
+1. **Importación de Exportaciones Nombradas**:
+   - Se importan usando el mismo nombre con el que fueron exportadas.
+   - Puedes importar una o varias exportaciones nombradas de un archivo.
+
+   **Ejemplo: Importando Exportaciones Nombradas**
+
+   ```javascript
+   // app.js
+   import { PI, calculateArea, author } from './utils';
+
+   console.log(`El área es: ${calculateArea(5)}`);
+   console.log(`Autor: ${author}`);
+   ```
+
+   - Aquí, `PI`, `calculateArea`, y `author` se importan desde `utils.js`.
+   - Debes usar el mismo nombre que en la exportación.
+
+2. **Importación de la Exportación por Defecto**:
+   - Puedes importar la exportación por defecto con cualquier nombre.
+
+   **Ejemplo: Importando la Exportación por Defecto**
+
+   ```javascript
+   // main.js
+   import calculateCircumference from './math';
+
+   console.log(`La circunferencia es: ${calculateCircumference(10)}`);
+   ```
+
+   - Aquí, `calculateCircumference` se importa desde `math.js` y se puede nombrar como desees.
+
+3. **Importaciones Combinadas**:
+   - Puedes combinar la importación de exportaciones nombradas y la exportación por defecto en una sola línea.
+
+   **Ejemplo: Importaciones Combinadas**
+
+   ```javascript
+   // combined.js
+   import calculateCircumference, { PI, author } from './utils';
+
+   console.log(`PI es: ${PI}`);
+   console.log(`Circunferencia: ${calculateCircumference(10)}`);
+   console.log(`Autor: ${author}`);
+   ```
+
+   - En este caso, `calculateCircumference` es la exportación por defecto, y `PI` y `author` son exportaciones nombradas.
+
+### **3. Renombrar Importaciones**
+
+Puedes renombrar las exportaciones nombradas durante la importación utilizando la palabra clave `as`.
+
+#### **Ejemplo: Renombrar una Importación**
+
+```javascript
+// app.js
+import { calculateArea as calcArea, author as writer } from './utils';
+
+console.log(`El área es: ${calcArea(5)}`);
+console.log(`Escrito por: ${writer}`);
+```
+
+- Aquí, `calculateArea` se importa como `calcArea` y `author` se importa como `writer`.
+
+### **4. Exportar Todo de una Vez**
+
+Puedes exportar todo el contenido de un archivo a otro utilizando el `export * from '...';`. Esto es útil si quieres re-exportar todo desde un archivo intermedio.
+
+#### **Ejemplo: Re-exportar Todo**
+
+```javascript
+// allUtils.js
+export * from './utils';
+```
+
+- Esto re-exporta todo lo que está en `utils.js` desde `allUtils.js`.
+
+### **Conclusión**
+
+Las declaraciones `import` y `export` son esenciales para manejar el código modular en JavaScript y React. Permiten organizar tu código en piezas reutilizables, haciéndolo más limpio, mantenible y fácil de entender. Dominarlas es crucial para desarrollar aplicaciones complejas y bien estructuradas.
+
+---
+
+# Free Hosting
+
+Al desarrollar una aplicación web con React, uno de los pasos finales es desplegarla en un entorno de producción para que otros puedan acceder a ella. Aquí es donde entran en juego los conceptos de **hosting gratuito**, **Netlify**, y el comando **`npm run build`**. A continuación te explico cada uno de estos conceptos y cómo se relacionan.
+
+### **1. Free Hosting (Hosting Gratuito)**
+
+El **hosting gratuito** se refiere a servicios en la nube que permiten alojar aplicaciones web sin costo. Estos servicios son ideales para desarrolladores que desean compartir proyectos personales, portafolios, o proyectos pequeños sin incurrir en gastos. Algunos de los servicios más populares para el hosting gratuito de aplicaciones React son:
+
+- **Netlify**: Ofrece un despliegue sencillo con integración continua (CI/CD), un dominio personalizado, y funcionalidades adicionales como redirecciones, formularios, y funciones serverless.
+- **Vercel**: Similar a Netlify, con integración perfecta para aplicaciones creadas con frameworks como React.
+- **GitHub Pages**: Permite alojar sitios web estáticos directamente desde un repositorio de GitHub.
+
+### **2. Netlify**
+
+**Netlify** es una plataforma de hosting que facilita el despliegue y la administración de aplicaciones web estáticas, como las que puedes construir con React. Una de las principales ventajas de Netlify es su simplicidad y las características adicionales que ofrece.
+
+#### **Características Clave de Netlify**:
+
+- **Despliegue Automático**: Puedes conectar un repositorio de GitHub, GitLab, o Bitbucket, y Netlify desplegará automáticamente tu aplicación cada vez que realices un commit.
+- **CI/CD Integrado**: Netlify ofrece un pipeline de CI/CD, lo que significa que puede compilar, probar y desplegar tu aplicación de manera automática.
+- **Configuración de Dominio Personalizado**: Puedes configurar un dominio personalizado para tu aplicación sin costo adicional.
+- **Soporte para Funciones Serverless**: Puedes añadir funciones serverless a tu aplicación fácilmente, lo que permite agregar lógica backend sin necesidad de configurar un servidor.
+
+#### **Desplegar una Aplicación React en Netlify**:
+
+1. **Crear un Build de Producción**: Primero, necesitas generar un build de producción de tu aplicación React usando el comando `npm run build`.
+2. **Subir el Build a Netlify**: Luego, puedes conectar tu repositorio a Netlify o arrastrar y soltar los archivos del build a la interfaz web de Netlify.
+3. **Configurar el Proyecto**: Netlify automáticamente configurará y desplegará tu proyecto. Puedes personalizar la configuración, como redirecciones o variables de entorno, directamente desde el panel de Netlify.
+
+### **3. `npm run build`**
+
+El comando **`npm run build`** es crucial en el proceso de despliegue de una aplicación React. Este comando prepara tu aplicación para producción al crear un build optimizado.
+
+#### **¿Qué Hace `npm run build`?**
+
+- **Compresión y Minificación**: Elimina todo el código innecesario, comentarios, y espacios en blanco para reducir el tamaño de los archivos.
+- **Empaquetado**: Combina todos los módulos y dependencias en un conjunto de archivos estáticos.
+- **Optimización**: Optimiza el código para mejorar el rendimiento en producción. Por ejemplo, React se configura en modo producción, lo que elimina mensajes de advertencia y otras funcionalidades de desarrollo.
+
+#### **Dónde Encontrar el Build**:
+
+Después de ejecutar `npm run build`, encontrarás los archivos listos para producción en la carpeta **`build`** dentro de tu proyecto. Esta carpeta contiene todos los archivos que necesitarás para desplegar tu aplicación en un servidor o servicio de hosting como Netlify.
+
+```bash
+npm run build
+```
+
+- **Resultado**: Una carpeta `build/` que contiene HTML, CSS, JavaScript y otros activos optimizados y listos para ser desplegados en un servidor.
+
+### **Ejemplo Práctico: Desplegar una Aplicación React en Netlify**
+
+1. **Crear el Build**:
+   ```bash
+   npm run build
+   ```
+
+2. **Subir el Build a Netlify**:
+   - Ve a [Netlify](https://www.netlify.com/) y crea una cuenta.
+   - Una vez dentro, selecciona "New site from Git" para conectar tu repositorio, o "Deploy site" si quieres subir el build manualmente.
+   - Arrastra y suelta la carpeta `build/` dentro de la interfaz de Netlify si haces el despliegue manual.
+   
+3. **Configurar el Proyecto**:
+   - Netlify detectará automáticamente que es una aplicación React y la configurará para ti.
+   - Puedes añadir un dominio personalizado si lo deseas.
+
+4. **Despliegue Automático**:
+   - Si conectas tu repositorio de GitHub, cada vez que hagas un push a la rama principal (o la rama que configures), Netlify reconstruirá y redeployará tu aplicación automáticamente.
+
+### **Conclusión**
+
+El proceso de crear un build de producción con `npm run build`, seguido por el despliegue en un servicio de hosting como Netlify, es un flujo común en el desarrollo de aplicaciones React. Este flujo te permite pasar de un entorno de desarrollo a un entorno de producción optimizado y accesible para usuarios reales.
+
+---
+
+# Advanced Intro React
+
+Estos conceptos forman parte de temas avanzados en React y son esenciales para construir aplicaciones complejas y bien estructuradas. Vamos a explorar cada uno de ellos.
+
+### **1. `useState`**
+
+El hook `useState` es una función que te permite añadir **estado** a los componentes funcionales en React. Antes de los hooks, solo los componentes de clase podían manejar el estado.
+
+#### **Ejemplo Básico**:
+
+```jsx
+import React, { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0); // useState inicializa el estado en 0
+
+  return (
+    <div>
+      <p>Has clickeado {count} veces</p>
+      <button onClick={() => setCount(count + 1)}>Incrementar</button>
+    </div>
+  );
+}
+
+export default Counter;
+```
+
+- **`useState(0)`**: Inicializa el estado `count` en `0`.
+- **`setCount`**: Es la función que actualiza el estado.
+
+### **2. `useEffect`**
+
+El hook `useEffect` se utiliza para manejar **efectos secundarios** en los componentes funcionales, como peticiones de datos, suscripciones o manipulación del DOM. Es el equivalente a `componentDidMount`, `componentDidUpdate`, y `componentWillUnmount` en componentes de clase.
+
+#### **Ejemplo Básico**:
+
+```jsx
+import React, { useState, useEffect } from 'react';
+
+function Example() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    document.title = `You clicked ${count} times`;
+
+    return () => {
+      console.log('Cleanup function'); // Se ejecuta al desmontar o actualizar
+    };
+  }, [count]); // Solo se ejecuta cuando `count` cambia
+
+  return (
+    <div>
+      <p>Has clickeado {count} veces</p>
+      <button onClick={() => setCount(count + 1)}>Incrementar</button>
+    </div>
+  );
+}
+
+export default Example;
+```
+
+- **`useEffect(() => {...}, [count])`**: El efecto se ejecuta cuando `count` cambia.
+- **`return () => {...}`**: Se ejecuta como limpieza antes de desmontar o antes de ejecutar el próximo efecto.
+
+### **3. Conditional Rendering**
+
+El **renderizado condicional** es cómo puedes decidir qué componentes o elementos renderizar según ciertas condiciones. En React, se hace usando operadores condicionales como `if`, `ternarios` (`? :`), o `&&`.
+
+#### **Ejemplo Básico**:
+
+```jsx
+import React, { useState } from 'react';
+
+function Greeting() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  return (
+    <div>
+      {isLoggedIn ? <h1>Bienvenido de nuevo!</h1> : <h1>Por favor, inicia sesión.</h1>}
+      <button onClick={() => setIsLoggedIn(!isLoggedIn)}>
+        {isLoggedIn ? 'Cerrar sesión' : 'Iniciar sesión'}
+      </button>
+    </div>
+  );
+}
+
+export default Greeting;
+```
+
+- **`isLoggedIn ? <ComponenteA /> : <ComponenteB />`**: Renderiza diferentes componentes dependiendo del estado.
+
+### **4. Forms**
+
+El manejo de **formularios** en React implica capturar y procesar entradas del usuario. Utilizas el estado (`useState`) para almacenar los valores de los campos del formulario.
+
+#### **Ejemplo Básico**:
+
+```jsx
+import React, { useState } from 'react';
+
+function MyForm() {
+  const [name, setName] = useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    alert(`Nombre enviado: ${name}`);
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Nombre:
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </label>
+      <button type="submit">Enviar</button>
+    </form>
+  );
+}
+
+export default MyForm;
+```
+
+- **`onChange={(e) => setName(e.target.value)}`**: Actualiza el estado cada vez que el usuario escribe en el campo.
+- **`onSubmit`**: Maneja el envío del formulario.
+
+### **5. `useRef`**
+
+El hook `useRef` es una forma de acceder directamente a un elemento DOM en un componente funcional de React. Es útil para manipulación directa del DOM, manejo de temporizadores, o para mantener un valor persistente que no causa re-renderizados cuando cambia.
+
+#### **Ejemplo Básico**:
+
+```jsx
+import React, { useRef } from 'react';
+
+function TextInputWithFocusButton() {
+  const inputEl = useRef(null);
+
+  const onButtonClick = () => {
+    inputEl.current.focus(); // Enfoca el input al hacer clic
+  };
+
+  return (
+    <div>
+      <input ref={inputEl} type="text" />
+      <button onClick={onButtonClick}>Enfocar input</button>
+    </div>
+  );
+}
+
+export default TextInputWithFocusButton;
+```
+
+- **`ref={inputEl}`**: Asigna una referencia al elemento input.
+- **`inputEl.current.focus()`**: Accede directamente al DOM para enfocar el input.
+
+### **6. `useReducer`**
+
+El hook `useReducer` es una alternativa a `useState` para manejar el estado en componentes que requieren lógica más compleja o múltiple. Es similar al patrón de reducción en Redux.
+
+#### **Ejemplo Básico**:
+
+```jsx
+import React, { useReducer } from 'react';
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return { count: state.count + 1 };
+    case 'decrement':
+      return { count: state.count - 1 };
+    default:
+      return state;
+  }
+}
+
+function Counter() {
+  const [state, dispatch] = useReducer(reducer, { count: 0 });
+
+  return (
+    <div>
+      <p>Contador: {state.count}</p>
+      <button onClick={() => dispatch({ type: 'increment' })}>Incrementar</button>
+      <button onClick={() => dispatch({ type: 'decrement' })}>Decrementar</button>
+    </div>
+  );
+}
+
+export default Counter;
+```
+
+- **`useReducer(reducer, { count: 0 })`**: Inicializa el estado y configura el reducer.
+- **`dispatch({ type: 'increment' })`**: Despacha acciones para cambiar el estado.
+
+### **7. Prop Drilling**
+
+El **prop drilling** se refiere al proceso de pasar datos de un componente padre a un componente hijo, y luego a un nieto, y así sucesivamente, a través de props. Puede volverse complicado y difícil de manejar si los datos deben pasar por muchos niveles de componentes.
+
+#### **Ejemplo Básico**:
+
+```jsx
+function Grandparent() {
+  const name = 'Juan';
+  return <Parent name={name} />;
+}
+
+function Parent({ name }) {
+  return <Child name={name} />;
+}
+
+function Child({ name }) {
+  return <p>Hola, {name}</p>;
+}
+```
+
+- **`<Parent name={name} />`**: La prop `name` se pasa desde el abuelo al padre y luego al hijo.
+
+### **8. Context API / `useContext`**
+
+La **Context API** de React es una solución para evitar el prop drilling. Permite compartir datos entre componentes sin tener que pasar props manualmente a través de cada nivel del árbol de componentes.
+
+#### **Ejemplo Básico**:
+
+```jsx
+import React, { useContext, createContext } from 'react';
+
+const NameContext = createContext();
+
+function Grandparent() {
+  const name = 'Juan';
+  return (
+    <NameContext.Provider value={name}>
+      <Parent />
+    </NameContext.Provider>
+  );
+}
+
+function Parent() {
+  return <Child />;
+}
+
+function Child() {
+  const name = useContext(NameContext);
+  return <p>Hola, {name}</p>;
+}
+```
+
+- **`NameContext.Provider`**: Provee el valor `name` a todos los componentes hijos.
+- **`useContext(NameContext)`**: Consume el valor de `NameContext` en cualquier componente sin necesidad de prop drilling.
+
+### **Conclusión**
+
+Estos conceptos avanzados de React son cruciales para manejar estados, efectos, formularios, renderizado condicional y la gestión del flujo de datos en una aplicación. Entender y dominar estos elementos te permitirá construir aplicaciones React más robustas y mantenibles.
+
+
+---
+
